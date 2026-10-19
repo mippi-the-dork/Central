@@ -1,9 +1,9 @@
 {
   "FileVersion": 3,
-  "Version": 7,
-  "VersionName": "0.7.0",
+  "Version": 10000,
+  "VersionName": "1.0.0",
   "FriendlyName": "Central",
-  "Description": "Blueprint mean, median, mode, and weighted mean statistics for supported arrays.",
+  "Description": "Type-aware Mean, Median, Mode, and Weighted Mean Blueprint nodes for Unreal Engine.",
   "Category": "Math",
   "CanContainContent": false,
   "Modules": [

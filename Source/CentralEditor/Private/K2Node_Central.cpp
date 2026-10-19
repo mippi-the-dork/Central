@@ -1,3 +1,5 @@
+﻿// Copyright Mippithedork 2026, Inc. All Rights Reserved.
+
 #include "K2Node_Central.h"
 #include "CentralBPLibrary.h"
 #include "BlueprintActionDatabaseRegistrar.h"

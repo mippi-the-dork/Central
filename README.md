@@ -1,115 +1,147 @@
 # Central
 
-**Mean, median, mode, and weighted mean calculations for Unreal Engine Blueprint arrays.**
+**Mean, Median, Mode, and Weighted Mean for Unreal Engine Blueprints.**
 
-Central brings four statistical operations into Blueprint graphs through compact, type-aware nodes. Connect a supported array to calculate its average, find its middle value, or identify its most frequently occurring items without building separate counting and sorting logic.
+Central adds four compact, type-aware statistics nodes to Blueprint graphs. Calculate an average, find the middle of a dataset, identify its most common values, or compute an average using individual weights without assembling the underlying array math yourself.
 
 ![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.8.x-black?logo=unrealengine)
 ![Platform](https://img.shields.io/badge/Platform-Windows%2064--bit-blue)
 ![Type](https://img.shields.io/badge/Plugin-Runtime%20%2B%20Editor-green)
-![Version](https://img.shields.io/badge/Version-0.7.0-blue)
-
-> **Development status:** Central 0.7.0 is a source development build. The code has not yet been confirmed by a successful Unreal Engine 5.8 build and full Blueprint test pass. Compatibility, packaging, and runtime behavior must be validated before public release.
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 
 ---
 
-# What is Central?
+## What is Central?
 
-Mean, median, and mode answer different questions about a collection of values:
+When working with an array, the question is not always what its total is. Often, you want to know what is typical.
 
-| Operation | Question | Example | Result |
+Central brings the four related ways to answer that question into Blueprint:
+
+| Node | Question | Example | Result |
 |---|---|---|---|
-| **Mean** | What is the arithmetic average? | `[2, 4, 6, 8]` | `5.0` |
-| **Median** | What is the middle of the sorted values? | `[1, 3, 5, 9, 100]` | `5` |
-| **Mode** | Which value appears most often? | `[2, 2, 3, 3, 4]` | `2` and `3` |
-| **Weighted Mean** | What is the average when some values matter more? | Values `[10, 20]`, Weights `[1, 3]` | `17.5` |
+| **Mean Value** (`MEAN`) | What is the arithmetic average? | `[2, 4, 6, 8]` | `5.0` |
+| **Median Value** (`MEDIAN`) | What is the middle of the ordered data? | `[1, 3, 5, 9, 100]` | `5.0` |
+| **Mode Value** (`MODE`) | Which value occurs most often? | `[2, 2, 3, 3, 4]` | Modes `[2, 3]` |
+| **Weighted Mean Value** (`WEIGHTED MEAN`) | What if some values contribute more? | Values `[10, 20]`, Weights `[1, 3]` | `17.5` |
 
-These calculations are useful in gameplay balancing, procedural generation, telemetry, AI decision logic, sampled positions, and other systems that work with arrays of values.
+This is useful for sampled gameplay values, procedural systems, AI state distributions, gameplay telemetry, balancing data, and other Blueprint systems built around collections of values.
 
-Central keeps the operations in one **Math > Statistics** Blueprint category. Its custom nodes determine their types from the connected array, and compile into typed runtime functions.
+Central concentrates on these operations rather than trying to replace Unreal Engine's wider math library.
 
 ---
 
 # Features
 
-### Mean Value (`MEAN`)
+### Four Focused Statistics Nodes
 
-Calculates an arithmetic average. Integer, Integer64, and Byte inputs produce Double results to preserve fractional answers. Vector and Linear Color arrays are averaged component-wise.
+**Mean, Median, Mode, and Weighted Mean** are available from the Blueprint action menu under **Math > Statistics**.
 
-### Weighted Mean Value (`WEIGHTED MEAN`)
+### Compact Blueprint Presentation
 
-Computes a weighted arithmetic average using a Double Weights array. Values and Weights must have matching lengths. Weights must be finite and nonnegative, with at least one positive weight. Zero-weight entries do not contribute. Integer-family inputs produce Double; math structures are averaged component-wise.
+Each operation uses a compact title. The nodes are pure and have no execution pins.
 
-### Median Value (`MEDIAN`)
+### Type-Aware Array Inputs
 
-Finds the middle element after sorting. Even-length arrays average the two middle values. Vector and Linear Color medians are component-wise, not geometric medians.
-
-### Mode Value (`MODE`)
-
-Finds the most frequently occurring item or items. Reports one convenient first-encountered result, all tied highest-frequency values, their occurrence count, and whether a mode exists.
-
-### Type-Aware Pins
-
-Connect a supported array and Central changes the result pins to appropriate types. Mean and Median promote integer-family results to Double rather than silently truncating fractions.
+The **Values** input takes a supported array. Its connection determines the calculated output type. For Mean, Median, and Weighted Mean, Integer, Integer64, and Byte arrays produce a **Double** value so fractional answers are not truncated.
 
 ### Multiple Modes
 
-Bimodal and multimodal arrays return every tied mode through the **Modes** array, preserving first-encountered order.
+Mode returns the first encountered modal value and an array of *all* values tied for the highest frequency, in encounter order.
 
-### Explicit Validity Outputs
+### Native and Blueprint Enum Modes
 
-**Has Value** and **Has Mode** distinguish useful results from empty datasets and other unsupported results. A default output value alone should not be used as a success indicator.
+Mode supports byte-backed native enums and Blueprint enums via an enum-aware reflected implementation. An enum array retains its enum type on the output pins.
 
-### Read-Only Input
+### Meaningful Validity Pins
 
-Central does not modify or sort the original array. Median sorts a local copy.
+**Has Value** and **Has Mode** distinguish a valid zero-valued answer from a result that could not be computed. A numeric `0` by itself does not indicate success or failure.
 
-### Runtime Calculation, Editor Integration
+### Component-Wise Math
 
-A Runtime module implements the calculations, while an Editor module provides the Blueprint graph nodes. The editor UI is not required in packaged games.
+Mean, Median, and Weighted Mean support Vector2D, Vector, Vector4, and Linear Color by operating on each component independently.
+
+### Unmodified Input Arrays
+
+Operations do not rearrange the caller's input arrays. Median creates its own working data when ordering values.
+
+### Hash-Based Frequency Counting
+
+Mode uses map-based frequency counting for supported primitive and mathematical values, including component-based keys for supported vector, color, and rotator types. Expected frequency-counting complexity is linear in the array length; memory use increases with distinct values.
+
+### Editor and Runtime Separation
+
+A **Runtime** module performs calculations; a separate **Editor** module implements the Blueprint nodes and pin typing. The editor module is not required by packaged games.
 
 ---
 
 # Using Central
 
-1. Open a Blueprint graph.
-2. Right-click and search for **Mean Value**, **Median Value**, or **Mode Value** under **Math > Statistics**.
-3. Connect a supported array to **Values**. You can use an array variable or a **Make Array** node.
-4. Read the calculated outputs, checking **Has Value** or **Has Mode** before relying on the result.
+1. Open a Blueprint graph and search for **Mean Value**, **Median Value**, **Mode Value**, or **Weighted Mean Value**.
+2. Connect a supported array to **Values**, either from an array variable or a **Make Array** node.
+3. For Weighted Mean, also connect a **Double array** to **Weights** with one weight per value.
+4. Read the output, checking **Has Value** or **Has Mode** before using a result whose validity matters.
 
-Central's input pin currently requires a connected array. An unconnected input cannot be used as an inline array literal; use **Make Array** instead.
+The Values pin requires an array connection; construct inline data through **Make Array** instead of leaving Values disconnected.
 
-## Mean Value
+---
+
+# Mean Value (`MEAN`)
+
+The arithmetic mean is the sum of the values divided by their count:
+
+```text
+Values = [2, 4, 6, 8]
+Value  = 5.0
+Has Value = true
+```
 
 | Pin | Direction | Meaning |
 |---|---|---|
-| **Values** | Input | Array of numeric, vector, or Linear Color values to average |
-| **Value** | Output | Arithmetic average; defaults when no valid result exists |
-| **Has Value** | Output | True when the input produces a valid finite average |
+| **Values** | Input | Supported array to average |
+| **Value** | Output | Arithmetic mean, or the output type's default when invalid |
+| **Has Value** | Output | Whether a valid average was produced |
 
-For example, `[1, 2]` produces `1.5`, not `1`. For vectors, each component is averaged independently. The same applies to Linear Color RGBA channels.
+Integer-family arrays yield Double answers. For instance, `[1, 2]` produces `1.5` rather than `1`. For Vector2D, Vector, Vector4, and Linear Color, Central averages each coordinate or channel independently.
 
-## Median Value
+For an empty array or non-finite numeric input, **Has Value** is false. A valid mean of zero still sets **Has Value** to true.
+
+---
+
+# Median Value (`MEDIAN`)
+
+The median is the middle value after sorting. For even counts it is the average of the two middle values:
+
+```text
+Values = [10, 3, 7]
+Value = 7.0
+
+Values = [1, 2, 3, 4]
+Value = 2.5
+```
 
 | Pin | Direction | Meaning |
 |---|---|---|
-| **Values** | Input | Array to find the median of |
-| **Value** | Output | Middle sorted value, or average of the two middle values |
-| **Has Value** | Output | True when a valid median exists |
+| **Values** | Input | Supported array to find the median of |
+| **Value** | Output | Middle value or mean of the middle pair |
+| **Has Value** | Output | Whether a valid median was produced |
 
-For example, `[10, 3, 7]` produces `7`. `[1, 2, 3, 4]` produces `2.5`.
+**Median does not sort your original array.** The ordering operation works on temporary data.
 
-**Vectors and Linear Color:** Components are treated independently. The final result may not be one of the original array elements. This is not a geometric median.
+For vectors and Linear Color, Median is **component-wise**. This is not the geometric median, and the resulting value may not appear in the original dataset.
 
-## Mode Value
+---
+
+# Mode Value (`MODE`)
+
+Mode identifies repeated values with the greatest frequency. Unlike Mean and Median, it can also operate on non-numeric categories such as Booleans, Names, Strings, and supported enums.
 
 | Pin | Direction | Meaning |
 |---|---|---|
 | **Values** | Input | Array to count repeated values in |
-| **Value** | Output | First encountered value among all qualifying modes |
-| **Modes** | Output | All values tied for the greatest frequency, in encounter order |
-| **Frequency** | Output | Occurrence count of each most-frequent value |
-| **Has Mode** | Output | True only when at least one value occurs more than once |
+| **Value** | Output | First encountered qualifying mode; default when none exists |
+| **Modes** | Output | All values tied for the highest frequency, in first-seen order |
+| **Frequency** | Output | Number of occurrences of each qualifying mode |
+| **Has Mode** | Output | True when at least one value occurs more than once |
 
 | Input | Value | Modes | Frequency | Has Mode |
 |---|---|---|---:|---|
@@ -119,196 +151,209 @@ For example, `[10, 3, 7]` produces `7`. `[1, 2, 3, 4]` produces `2.5`.
 | `[1, 2, 3]` | Default | `[]` | 1 | False |
 | `[]` | Default | `[]` | 0 | False |
 
-Central deliberately defines **no mode** when every element occurs only once. For these arrays, **Has Mode** is false even though **Frequency** is 1. A Boolean array also follows this rule: `[true, false]` has no mode, while `[true, true, false]` does.
+## When there is no mode
+
+Central intentionally treats **all-unique** input as having no mode. The input `[1, 2, 3]` therefore reports **Has Mode = false**, even though the greatest frequency is `1`. Empty input reports frequency `0`.
+
+## Bimodal and multimodal values
+
+When several values tie at a frequency greater than one, **Modes** contains all of them. **Value** returns the first one encountered in the original array. Central never silently discards the other modal values; they remain available on **Modes**.
+
+## Mode equality
+
+Mode counts matching values based on its implemented exact/component-key behavior, not an adjustable tolerance. Two values very close to each other are not guaranteed to count as equal. Positive and negative floating-point zero share a frequency group. Non-finite numeric data is rejected rather than treated as a matching category.
+
+For enums, the values are compared as their underlying integral representation while the graph retains the appropriate enum pin type.
 
 ---
 
-# Supported Types
+# Weighted Mean Value (`WEIGHTED MEAN`)
 
-| Blueprint data type | Mean | Median | Mode |
-|---|:---:|:---:|:---:|
-| Byte | Yes | Yes | Yes |
-| Integer | Yes | Yes | Yes |
-| Integer64 | Yes | Yes | Yes |
-| Float | Yes | Yes | Yes |
-| Double | Yes | Yes | Yes |
-| Vector2D | Yes | Yes | Yes |
-| Vector | Yes | Yes | Yes |
-| Vector4 | Yes | Yes | Yes |
-| Linear Color | Yes | Yes | Yes |
-| Rotator | No | No | Yes |
-| Boolean | No | No | Yes |
-| String | No | No | Yes |
-| Name | No | No | Yes |
+Weighted Mean assigns a contribution weight to each input element.
 
-**Type rules:** Integer, Integer64, and Byte return Double for Mean and Median. All other supported outputs preserve their corresponding scalar or structure type. Mode returns the input element type and an array of that same type.
+```text
+Values  = [10, 20]
+Weights = [1.0, 3.0]
+Value   = 17.5
+Has Value = true
+```
 
-Arbitrary enums, Gameplay Tags, user-defined structures, and object references are not implemented in this development version.
+Formula: `sum(value * weight) / sum(weight)`.
+
+| Pin | Direction | Meaning |
+|---|---|---|
+| **Values** | Input | Numeric, vector, or Linear Color array to average |
+| **Weights** | Input | Double array; one weight per element in Values |
+| **Value** | Output | Weighted mean, or the type's default when invalid |
+| **Has Value** | Output | Whether a valid weighted mean was produced |
+
+### Weight rules
+
+- Values and Weights must have the **same nonzero length**.
+- Every weight must be **finite and nonnegative**.
+- At least one weight must be **greater than zero**.
+- Individual zero weights are allowed and contribute nothing to the result.
+- Invalid numeric input is rejected, including entries whose weight is zero.
+
+The Weights array always uses **Double**, regardless of the Values element type. Like ordinary Mean, integer-family Values produce Double results, while supported mathematical structures are averaged component-wise.
 
 ---
 
-# Calculation Rules and Edge Cases
+# Supported Data Types
 
-### Empty Arrays
+| Blueprint type | Mean | Median | Mode | Weighted Mean |
+|---|:---:|:---:|:---:|:---:|
+| Byte | Yes | Yes | Yes | Yes |
+| Integer | Yes | Yes | Yes | Yes |
+| Integer64 | Yes | Yes | Yes | Yes |
+| Float | Yes | Yes | Yes | Yes |
+| Double | Yes | Yes | Yes | Yes |
+| Vector2D | Yes | Yes | Yes | Yes |
+| Vector | Yes | Yes | Yes | Yes |
+| Vector4 | Yes | Yes | Yes | Yes |
+| Linear Color | Yes | Yes | Yes | Yes |
+| Rotator | No | No | Yes | No |
+| Boolean | No | No | Yes | No |
+| String | No | No | Yes | No |
+| Name | No | No | Yes | No |
+| Byte-backed native or Blueprint enum | No | No | Yes | No |
 
-Mean and Median return the type's default and **Has Value = false**. Mode returns default **Value**, an empty **Modes** array, **Frequency = 0**, and **Has Mode = false**.
+**Output types:** All three averaging/ordering operations return Double for Byte, Integer, and Integer64 input. Otherwise, the result follows its supported input type. Mode's **Value** and **Modes** retain their Values array element type.
 
-### Non-Finite Values
+Arbitrary gameplay tags, object references, custom user structs, nested arrays, and native enums with unsupported underlying representations are not supported.
 
-NaN or infinite numeric input invalidates the calculation. For Mean and Median, **Has Value** becomes false. For Mode, **Has Mode** becomes false and mode outputs are cleared. Check the Boolean output before using any result.
+---
 
-### Equality for Mode
+# Edge Cases and Numerical Behavior
 
-Mode uses the value type's equality semantics. Numeric -0 and +0 share a frequency bucket, while a first-encountered input value remains the displayed result. Numeric floating-point values and math structures should not be assumed to have a configurable tolerance. Particularly for computed floating-point values, nearly identical results can count as distinct. For complex math types, equality may be governed by Unreal's overloaded operators.
+| Condition | Behavior |
+|---|---|
+| Empty Values array | Invalid result; default Value and false validity flag |
+| One value for Mean or Median | That value (subject to supported type and validity) |
+| All elements unique for Mode | Has Mode false, Modes empty, Frequency 1 |
+| Multiple highest-frequency repeated values | All included in Modes; Value uses first encounter |
+| Non-finite numeric values | Invalid result rather than NaN-based mode categories |
+| Negative or non-finite weight | Weighted Mean invalid |
+| Weight lengths differ | Weighted Mean invalid |
+| All weights zero | Weighted Mean invalid |
+| Large Integer64 values | Possible precision loss when converted to Double |
+| Very close floating-point values | May be treated as different Mode values |
 
-### Tie Resolution
+When validity is false, do not interpret the returned default as a meaningful statistic.
 
-When two or more values share the highest frequency, **Modes** reports all of them in the order they first occur in the input. **Value** returns the first of those tied modes.
+## Calculation performance
 
-### Precision
+Mean and Weighted Mean ordinarily traverse the input linearly. Median sorts working data, commonly O(n log n). Mode counts frequencies with maps and has expected O(n) counting behavior for supported hashed types. These are algorithmic characteristics, not performance benchmarks from a particular project.
 
-Mean and Median return a Double for integer-family arrays. Very large Integer64 values may still lose some integer precision when represented as a Double. Float-based results are subject to ordinary floating-point rounding.
+---
 
-### Performance
+# Blueprint Pin Types and Saved Graphs
 
-Mean processes the array linearly. Median sorts a local copy, ordinarily taking O(n log n). Mode uses a `TMap` for integral, floating-point, String, and Name types, providing expected linear frequency counting; supported math structures use an equality scan that can take O(n²) in the worst case.
+The **Values** array is initially a wildcard. Connecting a supported array resolves the input and corresponding output type. For integer-family Mean, Median, or Weighted Mean nodes, the scalar output is promoted to Double.
+
+If you change the input array's element type, reconnect dependent pins where necessary and compile the Blueprint. Central uses Unreal Engine's pin reconstruction workflow to preserve compatible connections when a Blueprint is reloaded and rebuilt, including split structure pins.
+
+When changing an array to a different element type, check any dependent connections and compile the Blueprint. Split structure pins and existing connections are handled through Unreal Engine's normal pin reconstruction workflow.
 
 ---
 
 # Installation
 
-## Source Installation
+## Project plugin from source
 
-1. Close Unreal Editor.
-2. Copy the **Central** folder into your project's `Plugins` directory, creating it if needed.
-3. The resulting path should be `YourProject/Plugins/Central/Central.uplugin`.
-4. Right-click your `.uproject` and select **Generate Visual Studio project files** if needed.
-5. Build the project's Editor target with a compatible Unreal Engine 5.8 C++ toolchain.
-6. Start Unreal Editor. Under **Edit > Plugins**, find **Central**, enable it if necessary, and restart when prompted.
+1. Close Unreal Editor and any active project build.
+2. Place the `Central` directory into `YourProject/Plugins/`.
+3. Verify the descriptor is at `YourProject/Plugins/Central/Central.uplugin`.
+4. Generate Visual Studio project files from the `.uproject` if necessary.
+5. Build the project's **Development Editor** target using an Unreal Engine 5.8 C++ environment.
+6. Start Unreal Editor and enable **Central** from **Edit > Plugins** if it is not already enabled. Restart if prompted.
 
-Do not remove the earlier **ModeValue** plugin until any Blueprints that reference its original node have been migrated and saved. Central does not automatically migrate legacy ModeValue nodes.
+```text
+YourProject/
+├── Config/
+├── Content/
+├── Plugins/
+│   └── Central/
+│       ├── Central.uplugin
+│       ├── README.md
+│       ├── CHANGELOG.md
+│       └── Source/
+└── YourProject.uproject
+```
 
-## Plugin Structure
+## Precompiled installation
+
+For precompiled distributions, install the package matching your Unreal Engine version and platform. A source package requires a working C++ build environment and does not include precompiled plugin binaries.
+
+Central can also be installed under your engine's `Engine/Plugins` directory. Per-project installation keeps the plugin alongside the project that uses it.
+
+---
+
+# Technical Architecture
 
 ```text
 Central/
 ├── Central.uplugin
 ├── README.md
+├── CHANGELOG.md
 └── Source/
     ├── Central/
     │   ├── Central.Build.cs
-    │   ├── Public/CentralBPLibrary.h
+    │   ├── Public/
+    │   │   └── CentralBPLibrary.h
     │   └── Private/
     │       ├── CentralBPLibrary.cpp
-    │       └── CentralModule.cpp
+    │       ├── CentralModule.cpp
+    │       └── Tests/
+    │           └── CentralStatisticsTests.cpp
     └── CentralEditor/
         ├── CentralEditor.Build.cs
-        ├── Public/K2Node_Central.h
+        ├── Public/
+        │   └── K2Node_Central.h
         └── Private/
-            ├── K2Node_Central.cpp
-            └── CentralEditorModule.cpp
+            ├── CentralEditorModule.cpp
+            └── K2Node_Central.cpp
 ```
 
----
+Central's `UK2Node` classes supply the graph's compact nodes, wildcard type propagation, and compilation into typed functions. `UCentralBPLibrary` contains the runtime implementations. Mode's enum path uses reflected properties to operate on supported enum arrays without reinterpreting arbitrary array memory as a different `TArray<T>`.
 
-# Technical Notes
-
-Central's visible nodes use custom `UK2Node` implementations for typed pins. During Blueprint compilation, those nodes expand to the corresponding typed functions in `UCentralBPLibrary`.
-
-The Runtime module supplies the calculations. The Editor module supplies graph integration. The internal typed functions are deliberately hidden from the ordinary Blueprint action menu.
-
-Currently, type support is validated during Blueprint compilation. Certain unsupported connections might be permitted visually before generating a compiler diagnostic. Connected array inputs are required.
+The Runtime module is the part required by gameplay code and cooked content. CentralEditor is compiled for the editor only.
 
 ---
 
-# Troubleshooting
+# Testing and Troubleshooting
 
-### The node will not compile
+## Automation tests
 
-Make sure **Values** is connected to a supported array and the project is using the supported Unreal Engine version. Unsupported types produce Blueprint compilation errors.
+The plugin includes source-level automation tests under `Source/Central/Private/Tests/`. In a suitable Unreal Editor test environment, run the test named **`Central.Runtime.BasicStatistics`** through the Automation system (for example, Session Frontend). Tests include basic means, medians, single and tied modes, no-mode cases, weighted means, and selected invalid inputs.
 
-### The output is zero or empty
+Automation tests cover runtime calculations. Blueprint integration and packaged-game behavior can also be checked using the workflows below.
 
-Check **Has Value** or **Has Mode**. A zero result can be mathematically valid, but it is also the default result when a calculation cannot produce a value.
+## Checking Blueprint behavior
 
-### Mode returns no result for a nonempty array
+- Connect every supported array type to the appropriate node and compile.
+- Save, close, reopen, and recompile Blueprints containing typed nodes.
+- Replace input arrays with different supported types and verify dependent output pins.
+- Try unsupported arrays and inspect connection and compiler diagnostics.
+- Test split vector/structure output pins, duplication, Undo/Redo, and copy/paste.
+- Test native and Blueprint enum arrays with Mode, including tied results.
+- Run a packaged build that executes the calculations from a Blueprint.
 
-If every item is unique, Central treats the data as having no mode. Check **Frequency**: it will read 1 for a nonempty all-unique dataset.
+## Common issues
 
-### An old ModeValue node is missing
+**The node does not compile:** Connect a supported array to Values, and connect a Double Weights array for Weighted Mean. Review the Blueprint compiler error for invalid types or incompatible connected output pins.
 
-Central does not redirect or automatically replace nodes from the earlier ModeValue plugin. Restore the previous plugin temporarily if needed and migrate the nodes manually.
+**The node returns zero or an empty array:** Read Has Value or Has Mode. A zero may also be an entirely valid result.
+
+**Mode returns no result for unique elements:** This is intentional. Central requires at least one repeated value for Has Mode to be true.
 
 ---
 
-# Development Validation
+# Compatibility
 
-Before a public 1.0.0 release, verify successful compilation and cooking for Unreal Engine 5.8, automatic pin type reconstruction, Undo/Redo, Blueprint serialization and reopening, type restrictions, all supported data types, empty and non-finite arrays, integer precision, bimodal and multimodal results, and packaged-runtime execution.
+**Version:** 1.0.0  
+**Unreal Engine:** 5.8.x  
+**Modules:** Runtime + Editor  
+**Distribution:** Source or platform-specific precompiled plugin packages.
 
-**Central 0.7.0 is a development build, not a public release.**
-
----
-
-# Weighted Mean
-
-Connect an array to **Values** and a Double array to **Weights**. The matching element indices determine which weight applies to which value.
-
-```text
-Values  = [10, 20]
-Weights = [1, 3]
-Result  = 17.5
-```
-
-Weighted Mean calculates `sum(value * weight) / sum(weight)` after normalizing weights. It returns **Has Value = false** when the arrays are empty, lengths differ, any weight is negative or non-finite, all weights are zero, or a value is non-finite. A failed calculation returns the type's default value. A zero weight excludes its corresponding value from the result, but invalid numeric values are still rejected during input validation.
-
-The Weights pin currently uses a **Double array**, including when the Values array is Float, Integer, or Vector. This is deliberate and preserves consistent precision for weights.
-
-# Development Validation
-
-This source version includes a developer automation test covering basic means, fractional integer medians, single/multiple/no modes, weighted means, and invalid weights. Run it using the Unreal Automation Test framework with the filter `Central.`. Run Blueprint graph compilation, pin reconstruction, copy/paste, game packaging, and runtime regression tests separately before a public release.
-
-**Known limitations:** Mode does not yet accept user-defined Blueprint enum arrays. Non-hashable math structs use a linear equality search and may be expensive on large arrays. The graph compiler reports unsupported array types, but connection-time rejection is not yet comprehensive. Floating-point mode uses the type's exact equality rules. This package has not been built inside UE 5.8 in this environment.
-
-
-## Development pass 0.7.0
-
-- Added graph connection-time rejection for unsupported Values array element types. A connected array must use one of Central's supported types. Enum arrays are intentionally not supported yet.
-- Added Mode output connection checks when the input array has already determined its type.
-- Expanded runtime automation coverage for empty arrays, three-way mode ties, odd-sized medians, and weighted zero-input edge cases.
-
-### Validation status
-
-This is a source-only development package. Compilation, Blueprint graph reconstruction, and automated tests must be run in Unreal Engine 5.8 before a public release. Tests can be launched in Unreal's Session Frontend with the `Central.Runtime.BasicStatistics` automation test.
-
-## Development pass 0.7.0
-
-- Canonicalizes the hash key for signed floating-point zero so negative and positive zero share a Mode frequency bucket.
-- Reduces redundant Blueprint graph refresh notifications when wildcard-derived pin types have not changed.
-- Adds signed-zero, zero-mean and string-tie automation coverage.
-- Keeps existing serialized node names and pins unchanged.
-- Unreal Engine 5.8 compilation and in-editor validation are still required.
-
-
-## Development validation notes (0.7.0)
-
-Mode requires at least one repeated value. When every item is unique, `Has Mode` is false, `Modes` is empty, and `Frequency` is 1. Invalid floating-point input also fails rather than treating non-finite values as categories.
-
-Blueprint output connections are checked against the currently resolved output type for all four nodes. This check is not a substitute for testing reconstruction, graph reload, pin relinking, and compilation in an installed UE 5.8 editor.
-
-The source in this package has not been built in UE 5.8. Blueprint enum arrays remain unsupported.
-
-
-## Saved Blueprint node reconstruction (development validation)
-
-Central recreates wildcard pin types from existing connected pins before Unreal restores graph connections during node reconstruction. This is intended to keep the `Values`, `Value`, and (for Mode) `Modes` pins consistent across save, reload, and Blueprint regeneration. Native split-pin restoration is retained. This behavior has been reviewed against the user-supplied Unreal Engine 5.8 `UK2Node` source but has **not** yet been verified by saving/reloading a Blueprint in an Unreal Editor build.
-
-Recommended validation: connect each supported input type, compile and save the Blueprint, restart the editor, reopen and compile again; then disconnect and replace the array with a different supported type, and test split vector pins and Undo/Redo.
-
-## Version 0.7.0 development changes
-
-- Mode supports byte-backed native and Blueprint enum arrays through a reflected runtime thunk. Enum values are counted without converting the original array to ordinary bytes.
-- Vector2D, Vector, Vector4, Linear Color, and Rotator modes use component-key hashing, preserving encounter order and recognizing signed zero consistently.
-- Integer-valued enums with non-byte Blueprint representations require additional editor validation before release.
-- Automated tests now cover signed-zero vector frequency grouping.
-
-> Development status: compilation and visual Blueprint testing on Unreal Engine 5.8 are still required.
+Central provides four focused Blueprint statistics operations: Mean, Median, Mode, and Weighted Mean.
