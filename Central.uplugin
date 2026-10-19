@@ -1,0 +1,21 @@
+{
+  "FileVersion": 3,
+  "Version": 7,
+  "VersionName": "0.7.0",
+  "FriendlyName": "Central",
+  "Description": "Blueprint mean, median, mode, and weighted mean statistics for supported arrays.",
+  "Category": "Math",
+  "CanContainContent": false,
+  "Modules": [
+    {
+      "Name": "Central",
+      "Type": "Runtime",
+      "LoadingPhase": "PreDefault"
+    },
+    {
+      "Name": "CentralEditor",
+      "Type": "Editor",
+      "LoadingPhase": "Default"
+    }
+  ]
+}
