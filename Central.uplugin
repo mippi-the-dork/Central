@@ -1,21 +1,29 @@
 {
-  "FileVersion": 3,
-  "Version": 10000,
-  "VersionName": "1.0.0",
-  "FriendlyName": "Central",
-  "Description": "Type-aware Mean, Median, Mode, and Weighted Mean Blueprint nodes for Unreal Engine.",
-  "Category": "Math",
-  "CanContainContent": false,
-  "Modules": [
-    {
-      "Name": "Central",
-      "Type": "Runtime",
-      "LoadingPhase": "PreDefault"
-    },
-    {
-      "Name": "CentralEditor",
-      "Type": "Editor",
-      "LoadingPhase": "Default"
-    }
-  ]
+	"FileVersion": 3,
+	"Version": 10000,
+	"VersionName": "1.0.0",
+	"FriendlyName": "Central",
+	"Description": "Type-aware Mean, Median, Mode, and Weighted Mean Blueprint nodes for Unreal Engine.",
+	"Category": "Blueprints",
+	"CanContainContent": false,
+	"Modules": [
+		{
+			"Name": "Central",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "CentralEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
 }
