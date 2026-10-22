@@ -19,10 +19,10 @@
 		}
 	],
 	"CreatedBy": "",
-	"CreatedByURL": "",
-	"DocsURL": "",
+	"CreatedByURL": "https://github.com/mippi-the-dork",
+	"DocsURL": "https://github.com/mippi-the-dork/Central",
 	"MarketplaceURL": "",
-	"SupportURL": "",
+	"SupportURL": "https://github.com/mippi-the-dork/Central/issues",
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false
