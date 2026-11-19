@@ -4,6 +4,13 @@
 
 ## Using Mode on an enum array
 
+<!-- Media target: Image | central-enum | docs/assets/media/central-enum.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-enum">
+  <img src="../../assets/media-placeholder.svg" alt="Enum Mode preserves the enum type while reporting tied repeated values." loading="lazy">
+  <figcaption>Enum Mode preserves the enum type while reporting tied repeated values.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture a Blueprint enum Make Array such as [Idle,Patrol,Patrol,Attack,Idle] connected to Mode, with typed Value and Modes outputs.</span></figcaption>
+</figure>
+
+
 Mode supports **byte-backed native and Blueprint enums**, preserving the enum element type on Value and Modes. Connect an array of supported enum values; it returns the first encountered repeated category and all tied categories.
 
 For example, with AI states [Idle, Patrol, Patrol, Attack, Idle], the results are:

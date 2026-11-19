@@ -12,6 +12,13 @@ Mode has a deliberate exception: if Values is unconnected, a typed Value or Mode
 
 ## Reconstruction
 
+<!-- Media target: Image | central-pin-reconstruction | docs/assets/media/central-pin-reconstruction.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-pin-reconstruction">
+  <img src="../../assets/media-placeholder.svg" alt="Central reconstructs compatible typed Blueprint pins after graph changes." loading="lazy">
+  <figcaption>Central reconstructs compatible typed Blueprint pins after graph changes.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Draw Values wildcard → Match type → typed Value/Modes outputs → save and pin reconstruction, including incompatible connection handling.</span></figcaption>
+</figure>
+
+
 `ReallocatePinsDuringReconstruction` and `PostReconstructNode` preserve compatible pin layouts when Blueprints load or change. The current schema can resolve and restore types from previous Values or dependent output pins, then reconcile links with the new type.
 
 ## Graph notifications

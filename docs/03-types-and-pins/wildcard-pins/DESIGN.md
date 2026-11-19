@@ -8,6 +8,13 @@ Central uses one compact node per operation, instead of exposing separate graph 
 
 ## Connecting an array
 
+<!-- Media target: GIF | central-wildcard | docs/assets/media/central-wildcard.gif -->
+<figure class="doc-media" data-kind="gif" data-media-id="central-wildcard">
+  <img src="../../assets/media-placeholder.svg" alt="Connecting Values resolves the wildcard and adapts result pins." loading="lazy">
+  <figcaption>Connecting Values resolves the wildcard and adapts result pins.<span class="media-capture-instructions"><strong>Capture instructions · GIF:</strong> Record Mean unconnected, connect Integer Values, then replace with Vector Values; show type changes and recompile.</span></figcaption>
+</figure>
+
+
 1. Add a Central node using the Blueprint action menu.
 2. Create or find an array variable or Make Array node with a supported element type.
 3. Connect the array to **Values**.

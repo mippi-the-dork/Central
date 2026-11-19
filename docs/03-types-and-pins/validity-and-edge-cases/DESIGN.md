@@ -4,6 +4,13 @@
 
 ## Never assume default output means success
 
+<!-- Media target: Image | central-validity | docs/assets/media/central-validity.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-validity">
+  <img src="../../assets/media-placeholder.svg" alt="Two outputs may both equal zero even when only one represents a valid result." loading="lazy">
+  <figcaption>Two outputs may both equal zero even when only one represents a valid result.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Show Mean([-1,1]) producing zero with Has Value true beside empty Mean producing default zero with Has Value false.</span></figcaption>
+</figure>
+
+
 Central reports **Has Value** for Mean, Median and Weighted Mean, and **Has Mode** for Mode. A valid average may be zero, so comparing `Value != 0` is not a reliable validity check.
 
 | Input or condition | Result behavior |

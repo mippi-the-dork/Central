@@ -5,6 +5,13 @@
 The graph nodes visible to authors are implemented in **CentralEditor**, while actual calculations are provided by the separate **Central runtime module**. The runtime functions are used in compiled Blueprint gameplay; the editor module does not need to ship with a packaged game.
 
 ## What this section explains
+
+<!-- Media target: Image | central-modules-overview | docs/assets/media/central-modules-overview.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-modules-overview">
+  <img src="../assets/media-placeholder.svg" alt="CentralEditor handles graph authoring and Central supplies runtime calculations." loading="lazy">
+  <figcaption>CentralEditor handles graph authoring and Central supplies runtime calculations.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Draw an architecture diagram from UK2Node_Central editor graph to UCentralBPLibrary runtime functions and a packaged Blueprint.</span></figcaption>
+</figure>
+
 - How a wildcard K2 node resolves its supported type and expands into a typed function call during compilation.
 - How each statistics operation computes results and handles invalid data.
 - Which native Unreal Automation test exists, and what still needs hands-on Blueprint and packaging verification.

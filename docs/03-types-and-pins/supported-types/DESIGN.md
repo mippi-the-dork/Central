@@ -4,6 +4,13 @@
 
 ## Type compatibility
 
+<!-- Media target: Image | central-supported-types | docs/assets/media/central-supported-types.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-supported-types">
+  <img src="../../assets/media-placeholder.svg" alt="A defined set of numeric and math-struct arrays is supported, with more categories for Mode." loading="lazy">
+  <figcaption>A defined set of numeric and math-struct arrays is supported, with more categories for Mode.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Show a numeric Mean, Vector Median and enum or String Mode, each with real typed array connections.</span></figcaption>
+</figure>
+
+
 Central accepts **arrays of supported types**, not arbitrary values or nested arrays. The connection to Values determines which native implementation and output type are used.
 
 | Blueprint type | Mean | Median | Mode | Weighted Mean |

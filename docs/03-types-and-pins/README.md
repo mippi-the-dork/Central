@@ -5,6 +5,13 @@
 Central's **Values** input starts as a wildcard array. Connecting a supported array determines the result type and whether the node can compile.
 
 ## Key type rules
+
+<!-- Media target: Image | central-types-overview | docs/assets/media/central-types-overview.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-types-overview">
+  <img src="../assets/media-placeholder.svg" alt="Connected Values arrays determine the output pin types." loading="lazy">
+  <figcaption>Connected Values arrays determine the output pin types.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Show an Integer Mean outputting Double, a Vector Median outputting Vector, and a String Mode retaining String output; use real pins.</span></figcaption>
+</figure>
+
 - Integer, Integer64 and Byte arrays return **Double** for Mean, Median and Weighted Mean.
 - Float, Double and supported vectors/colors retain their appropriate supported output type.
 - Mode can also work with Booleans, Strings, Names, Rotators, and supported byte-backed native and Blueprint enums.

@@ -4,6 +4,13 @@
 
 ## Reflected enum execution
 
+<!-- Media target: Image | central-enum-thunk | docs/assets/media/central-enum-thunk.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-enum-thunk">
+  <img src="../../assets/media-placeholder.svg" alt="The enum Mode path uses reflected properties to retain the actual enum type." loading="lazy">
+  <figcaption>The enum Mode path uses reflected properties to retain the actual enum type.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Diagram UK2Node_Central expansion to ModeEnum CustomThunk, reflected array property and correctly typed Value/Modes outputs.</span></figcaption>
+</figure>
+
+
 `UCentralBPLibrary::ModeEnum` declares a `BlueprintPure` `CustomThunk` using `ArrayParm="Values,Modes"` and `ArrayTypeDependentParams="Value"`. `execModeEnum` inspects reflected input array and element properties at runtime, validates supported integral enum representation and copies properly typed results.
 
 This avoids reinterpreting arbitrary `TArray<Enum>` memory as `TArray<uint8>` without reflection, while keeping the author-visible enum type on graph pins.
