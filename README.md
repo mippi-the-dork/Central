@@ -1,127 +1,122 @@
-<div align="center">
-
-<img src="Resources/Icon128.png" alt="Central plugin icon" width="96">
-
 # Central
 
-### Statistics belong in your Blueprint graph. Not in a maze of math nodes.
+**Blueprint Statistics for Unreal Engine**
 
-**Mean · Median · Mode · Weighted Mean** for Unreal Engine Blueprints.
+**Spend less time building math graphs. Spend more time using the answers.**
 
-Four compact, type-aware nodes. Clear results. Less graph clutter.
+Central brings **Mean, Median, Mode and Weighted Mean** into Unreal Engine Blueprints as four compact, type-aware nodes. Connect a supported array to get the average, find its middle value, identify repeated values or account for the relative importance of individual entries—without rebuilding the same sorting, counting and averaging logic.
 
-[![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.8.x-black?logo=unrealengine)](https://www.unrealengine.com/)
-![Platform](https://img.shields.io/badge/Platform-Win64-blue)
-![Modules](https://img.shields.io/badge/Runtime%20%2B%20Editor-Modules-2c9f79)
-![Version](https://img.shields.io/badge/Version-1.0.0-327cc8)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![Unreal Engine](https://img.shields.io/badge/Unreal%20Engine-5.8.x-black?logo=unrealengine)](https://www.unrealengine.com/) ![Platform](https://img.shields.io/badge/Platform-Win64-blue) ![Runtime + Editor](https://img.shields.io/badge/Plugin-Runtime%20%2B%20Editor-217346) ![Version](https://img.shields.io/badge/Central-v1.0.0-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-**[Explore the Documentation](https://mippi-the-dork.github.io/Central/)** · **[Get Central](https://github.com/mippi-the-dork/Central/releases)** · **[View the Source](https://github.com/mippi-the-dork/Central)**
-
-</div>
+<p align="center">
+  <img src="Resources/Icon128.png" alt="Central plugin icon" width="128">
+</p>
 
 ---
 
-## Your data has a story. Find the useful number.
+## Your Blueprint graph should answer the question
 
-Blueprints are great at manipulating values. But answering a basic question about an array can quickly mean building another set of loops, branches, counters, sorting logic, and temporary variables.
+You have a collection of values and want to know what they tell you. A straightforward statistic shouldn't require another loop, sorting setup, collection of counters or several branches. Those extra nodes make the graph harder to read and add more logic to maintain.
 
-**Central gives those everyday questions their own nodes.** Connect a supported array, read the result, and get back to the system you're actually designing.
+**Central gives those common calculations a home.**
 
-| The question | Use | Example result |
-| --- | --- | --- |
-| **What's the average?** | **Mean** | `[2, 4, 6, 8]` → **5** |
-| **What's the middle value?** | **Median** | `[1, 3, 5, 9, 100]` → **5** |
-| **What occurs most often?** | **Mode** | `[2, 2, 3, 3, 4]` → **2 and 3** |
-| **What if some values matter more?** | **Weighted Mean** | `[10, 20]` with weights `[1, 3]` → **17.5** |
+- **Get a useful average.** Find the arithmetic mean of your numeric, vector or color samples.
+- **See past the outliers.** Use Median to find the middle of a dataset rather than letting one unusual value dominate.
+- **Find what's most common.** Mode reports repeated values—including tied results and supported enum categories.
+- **Account for importance.** Weighted Mean lets some samples contribute more than others.
+- **Keep results meaningful.** Validity pins tell you whether a calculation actually produced an answer, even when that answer is zero.
 
-You'll find all four under **Math → Statistics** in the Blueprint action menu.
+## Explore the documentation
 
-**[See all four nodes, their pins, and practical examples →](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2FREADME.md)**
+> ### [**Central Documentation — Full User Guide and Technical Reference**](https://mippi-the-dork.github.io/Central/)
+>
+> **Everything you need to learn and use Central, in one place.** Browse each statistics node, build your first Blueprint graph, check supported array types and validity rules, or explore the implementation and troubleshooting guides.
+>
+> **[Get Started](https://mippi-the-dork.github.io/Central/?page=01-getting-started%2FREADME.md)** · **[All Statistics Nodes](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2FREADME.md)** · **[Types & Blueprint Pins](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2FREADME.md)** · **[Troubleshooting](https://mippi-the-dork.github.io/Central/?page=05-support%2Ftroubleshooting%2FDESIGN.md)**
 
-## Built for real Blueprint work
+The README introduces what Central offers. **The [documentation website](https://mippi-the-dork.github.io/Central/) is the maintained reference for exact pin behavior, installation, examples and technical details.**
 
-**Compact, pure nodes.** No execution pins or custom workflow to manage. Central fits directly into graphs where you're already using arrays.
+## Four statistics. One clean approach.
 
-**Types that adapt to your data.** Connect a supported array to **Values** and the output pins resolve accordingly. Integer, Integer64, and Byte averages produce **Double** results, so an average like `1.5` isn't silently truncated.
+All four nodes are available from the Blueprint action menu under **Math → Statistics**.
 
-**More than just numbers.** Mean, Median, and Weighted Mean support component-wise calculations for Vector2D, Vector, Vector4, and Linear Color. Mode also supports repeated Booleans, Strings, Names, Rotators, and supported byte-backed native/Blueprint enums.
-
-**Ties aren't thrown away.** Mode exposes the first encountered qualifying value, **every tied mode**, their **Frequency**, and **Has Mode**.
-
-**Know whether a result is valid.** **Has Value** and **Has Mode** distinguish a real zero from an invalid or absent statistic—important when game logic depends on the answer.
-
-**Your input stays yours.** Central does not reorder the original array just to calculate a median.
-
-**Useful in packaged games.** Blueprint authoring lives in an Editor module; the calculations live in a separate Runtime module.
-
-## Where would you use it?
-
-- **Gameplay balancing:** Compare recent damage, movement, or scoring samples.
-- **AI and procedural systems:** Find commonly selected states or summarize generated values.
-- **Telemetry and playtesting:** Distinguish typical behavior from unusual outliers.
-- **Weighted decisions:** Combine several scores using explicit, nonnegative contribution weights.
-- **Vectors and colors:** Calculate component-wise typical values without building separate calculations for each channel.
-
-Central doesn't collect these samples for you. **You supply the arrays; Central answers the statistical question.**
-
-## See Central in action
-
-The [full documentation website](https://mippi-the-dork.github.io/Central/) contains focused user guides and separate implementation references, including:
-
-| Want to… | Go here |
+| Statistics node | What you can do |
 | --- | --- |
-| Set up Central and create your first graph | [Getting Started](https://mippi-the-dork.github.io/Central/?page=01-getting-started%2FREADME.md) |
-| Find the right node for your problem | [Statistics Nodes](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2FREADME.md) |
-| Understand tied modes and categorical values | [Mode Value](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2Fmode%2FDESIGN.md) |
-| Build a weighted average correctly | [Weighted Mean Value](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2Fweighted-mean%2FDESIGN.md) |
-| Check whether your array type is supported | [Supported Data Types](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2Fsupported-types%2FDESIGN.md) |
-| Understand wildcard pins and changing types | [Wildcard Pins & Graph Changes](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2Fwildcard-pins%2FDESIGN.md) |
-| Handle empty data, invalid results, and precision | [Validity & Edge Cases](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2Fvalidity-and-edge-cases%2FDESIGN.md) |
-| Explore the C++ implementation | [Runtime and Editor Architecture](https://mippi-the-dork.github.io/Central/?page=04-implementation-and-testing%2Farchitecture%2FTECHNICAL.md) |
-| Find fixes or report a problem | [Troubleshooting](https://mippi-the-dork.github.io/Central/?page=05-support%2Ftroubleshooting%2FDESIGN.md) |
+| **[Mean Value](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2Fmean%2FDESIGN.md)** | Calculate the arithmetic average. For example, `[2, 4, 6, 8]` returns **5**. |
+| **[Median Value](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2Fmedian%2FDESIGN.md)** | Find the middle of the ordered values, even with outliers. `[1, 3, 5, 9, 100]` returns **5**. |
+| **[Mode Value](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2Fmode%2FDESIGN.md)** | Find the most frequent values, including ties. `[2, 2, 3, 3, 4]` returns **2 and 3** as modes. |
+| **[Weighted Mean Value](https://mippi-the-dork.github.io/Central/?page=02-statistics-nodes%2Fweighted-mean%2FDESIGN.md)** | Give inputs different contributions. Values `[10, 20]` with weights `[1, 3]` return **17.5**. |
 
-**[OPEN THE CENTRAL DOCUMENTATION WEBSITE →](https://mippi-the-dork.github.io/Central/)**
+These are **pure Blueprint nodes**, with no execution pins. Central calculates from the arrays you provide; it doesn't require special Actors, components or an additional editor.
 
-## A focused tool, not an entire statistics suite
+## Useful in real production workflows
 
-Central is deliberately small in scope. It provides **four** statistics operations—not variance, standard deviation, percentiles, data visualization, automatic analytics collection, or a replacement for Unreal's math libraries.
+### Make sense of gameplay samples
 
-A few boundaries matter:
+Average recent damage, response times or scores without adding another arithmetic subgraph. If a few extreme samples distort the result, use Median to describe the middle instead.
 
-- **Supported arrays only.** Arbitrary custom structs, Gameplay Tags, UObject references, nested arrays, and every possible enum representation are not supported.
-- **Connect Values.** The wildcard input requires a connected supported array; use **Make Array** for inline values.
-- **Mode requires repetition.** All-unique inputs deliberately return **Has Mode = false**, even though the highest observed frequency is one.
-- **Weights have rules.** Weighted Mean requires one finite, nonnegative **Double** weight per value and at least one positive weight.
-- **Numerical precision still applies.** Very close floating-point values can count as distinct Mode values; large Integer64 values can lose precision when converted to Double.
-- **Check validity outputs.** Empty or invalid numerical inputs return an invalid result; a default value alone does not tell you whether the calculation succeeded.
+### Find patterns in AI and procedural systems
 
-For the exact behavior, supported types, and examples, see [Limitations and Edge Cases](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2Fvalidity-and-edge-cases%2FDESIGN.md).
+Use Mode to identify the most frequently observed AI state, selected category or generated value. Mode can work with supported non-numeric data, including **Booleans, Strings, Names and byte-backed enums**. When several values tie for the highest repeated frequency, **Modes** returns all of them.
 
-## Compatibility and installation
+### Combine scores with different priorities
 
-**Current release:** Central **v1.0.0** · **Unreal Engine 5.8.x** · **Win64** · **Runtime + Editor**
+Weighted Mean makes it straightforward to combine sampled values with explicit importance. Provide a **Double** weight array alongside your Values array; zero weights are allowed, and at least one weight must be positive.
 
-Download an available matching package from [Releases](https://github.com/mippi-the-dork/Central/releases), or use the source in this repository with an Unreal Engine C++ build environment. Complete installation and updating instructions live in the [Installation Guide](https://mippi-the-dork.github.io/Central/?page=01-getting-started%2Finstallation%2FDESIGN.md).
+### Work naturally with Blueprint types
 
-## Contributing, issues, and feature requests
+The **Values** array connection determines the compatible output type. Integer, Integer64 and Byte inputs return **Double** results for Mean, Median and Weighted Mean, preserving fractional averages. Supported Vector2D, Vector, Vector4 and Linear Color calculations operate component by component.
 
-**Found a bug?** [Open an issue](https://github.com/mippi-the-dork/Central/issues/new) with your Unreal version, Central version, array type, example data, expected/actual results, and any relevant Blueprint compiler messages or screenshots. Check [Troubleshooting](https://mippi-the-dork.github.io/Central/?page=05-support%2Ftroubleshooting%2FDESIGN.md) first.
+### Know whether the result is usable
 
-**Have a feature idea?** [Start a feature request](https://github.com/mippi-the-dork/Central/issues/new) explaining the gameplay or graph-authoring problem, why the proposed statistic or type helps, and what the results should mean for empty or invalid inputs. The [Roadmap](https://mippi-the-dork.github.io/Central/?page=ROADMAP.md) distinguishes shipped functionality from unannounced future work.
+**Has Value** or **Has Mode** distinguishes a legitimate result of `0` from a calculation with no usable result. Median does not rearrange your input array; it orders a working copy instead.
 
-**Want to contribute code or documentation?** Issues and pull requests are welcome. For a substantial change, discuss the scope in an issue first. Keep contributions focused, document new behavior, and include relevant tests where appropriate.
+[**Learn about supported types, validity, and numerical edge cases →**](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2Fvalidity-and-edge-cases%2FDESIGN.md)
+
+## Get Central
+
+**Central v1.0.0** targets **Unreal Engine 5.8.x on Windows 64-bit**, with separate **Runtime** and **Editor** modules.
+
+Choose a compatible prebuilt release when available, or install the full source from this repository in a project with a working Unreal Engine C++ toolchain. The calculations are in the Runtime module; the authoring nodes are provided by the Editor module.
+
+**[Download GitHub Releases](https://github.com/mippi-the-dork/Central/releases)** · **[Installation Guide](https://mippi-the-dork.github.io/Central/?page=01-getting-started%2Finstallation%2FDESIGN.md)** · **[Your First Blueprint Graph](https://mippi-the-dork.github.io/Central/?page=01-getting-started%2Ffirst-graph%2FDESIGN.md)**
+
+## Important limitations
+
+Central is a **focused Blueprint statistics plugin**, not a full statistical analysis, telemetry or data-collection system.
+
+- **Four operations, not an analytics suite.** It doesn't provide standard deviation, variance, percentiles, charting or automatic sample collection.
+- **Supported arrays only.** Arbitrary custom structs, Gameplay Tags, UObject references, nested arrays and unsupported native enum representations are outside the current type set.
+- **A connected Values array is required.** Use a supported array variable or **Make Array**; don't leave the wildcard input unconnected.
+- **Mode requires repetition.** When every value appears only once, Central intentionally reports **Has Mode = false**; ties among repeated values are supported.
+- **Weighted Mean validates its inputs.** Weights must be a same-length **Double** array of finite, nonnegative values with at least one positive weight.
+- **Floating-point rules still apply.** Very close numeric values may count as distinct modes, and sufficiently large Integer64 inputs can lose precision when converted to Double.
+- **Invalid isn't the same as zero.** Empty or invalid numeric inputs can produce a default output; check **Has Value** or **Has Mode** before relying on it.
+
+For exact details, see [Supported Data Types](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2Fsupported-types%2FDESIGN.md), [Validity & Edge Cases](https://mippi-the-dork.github.io/Central/?page=03-types-and-pins%2Fvalidity-and-edge-cases%2FDESIGN.md) and [Troubleshooting](https://mippi-the-dork.github.io/Central/?page=05-support%2Ftroubleshooting%2FDESIGN.md).
+
+## What's next?
+
+Central v1.0.0 established the four core statistics nodes, type-aware Blueprint inputs, validity outputs and separation between editor authoring and runtime calculations.
+
+**No future version or specific feature set has been announced.** Suggestions for additional operations or supported types can be discussed through GitHub Issues; they aren't included in v1.0.0 unless shipped in a later release.
+
+[**View the Central Roadmap →**](https://mippi-the-dork.github.io/Central/?page=ROADMAP.md)
+
+## Issues, feature requests and contributions
+
+Found a bug? Please [open an issue](https://github.com/mippi-the-dork/Central/issues) with your Central/Unreal versions, input array type, sample values or weights, expected result, and Blueprint compiler messages or screenshots where helpful.
+
+Have an idea? [Submit a feature request](https://github.com/mippi-the-dork/Central/issues) describing the gameplay or authoring problem, the operation or type that would help, and what should happen with empty or invalid input.
+
+**Pull requests are welcome.** For major changes, open an issue first so the intended scope can be discussed. Central aims to remain compact, type-safe and natural to Unreal's Blueprint workflow.
 
 ## License
 
-Central is provided under the **MIT License**. See [LICENSE](LICENSE) for the complete terms and copyright notice.
+Central is distributed under the **MIT License**. See [LICENSE](LICENSE) for the full terms.
 
 ---
 
-<div align="center">
+**Central is created by Mippi the Dork.**
 
-**Four nodes. Better answers. Cleaner Blueprints.**
-
-**[Read the Docs](https://mippi-the-dork.github.io/Central/)** · [Releases](https://github.com/mippi-the-dork/Central/releases) · [Report an Issue](https://github.com/mippi-the-dork/Central/issues)
-
-</div>
+**[Explore the Documentation](https://mippi-the-dork.github.io/Central/)** · **[Get Central](https://github.com/mippi-the-dork/Central/releases)** · **[Report an Issue](https://github.com/mippi-the-dork/Central/issues)**
