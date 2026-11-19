@@ -4,11 +4,11 @@
 
 Central brings **Mean, Median, Mode and Weighted Mean** into Unreal Engine Blueprints as four compact, type-aware, pure math nodes. With a supported array connected, you can calculate a useful statistic without constructing the underlying array math, sorting or frequency-counting graph by hand.
 
-![Central Blueprint statistics overview](assets/media-placeholder.svg)
-
-*Central places four statistics operations directly in Blueprint graphs, with outputs that adapt to the connected array type.*
-
-**Capture instructions · Image:** Capture a clean Unreal Blueprint graph showing all four Central nodes—Mean, Median, Mode and Weighted Mean—connected to representative supported arrays, with the node titles and output pins readable. Use this as the site's main product screenshot.
+<!-- Media target: Image | central-hero | docs/assets/media/central-hero.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-hero">
+  <img src="assets/media-placeholder.svg" alt="Central's four Blueprint statistics nodes provide typed array results." loading="lazy">
+  <figcaption>Central's four Blueprint statistics nodes provide typed array results.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture a polished Blueprint graph with Mean, Median, Mode and Weighted Mean in one view; show sample Make Array inputs and readable output pins, without unrelated graph clutter.</span></figcaption>
+</figure>
 
 ## What can I do with Central?
 

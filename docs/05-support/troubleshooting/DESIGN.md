@@ -8,6 +8,13 @@ Check Central is enabled under **Edit → Plugins**, the project built successfu
 
 ## Values pin won't connect or compile
 
+<!-- Media target: Image | central-compile-error | docs/assets/media/central-compile-error.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-compile-error">
+  <img src="../../assets/media-placeholder.svg" alt="A disconnected or unsupported Values array produces a Blueprint compiler diagnostic." loading="lazy">
+  <figcaption>A disconnected or unsupported Values array produces a Blueprint compiler diagnostic.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture an invalid Central node and its actual compiler message, with the Values pin type clearly visible.</span></figcaption>
+</figure>
+
+
 Connect an **array** of a supported type. A scalar value, incompatible element type or disconnected Values pin is not valid. For Weighted Mean, connect a **Double array** to Weights of the same length as Values.
 
 ## Output type is unexpected

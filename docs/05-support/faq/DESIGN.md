@@ -22,6 +22,13 @@
 
 ## Results
 
+<!-- Media target: Image | central-mode-faq | docs/assets/media/central-mode-faq.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-mode-faq">
+  <img src="../../assets/media-placeholder.svg" alt="Mode can return Frequency 1 while reporting no repeated mode." loading="lazy">
+  <figcaption>Mode can return Frequency 1 while reporting no repeated mode.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture Mode input [1,2,3] with Frequency 1, empty Modes and Has Mode false visible together.</span></figcaption>
+</figure>
+
+
 **What does Has Value mean?** The input produced a valid statistic. A Value of zero is not the same as an invalid result.
 
 **Why does Mode say Has Mode false for [1, 2, 3]?** Central requires at least one repeated value for a valid mode.

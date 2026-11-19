@@ -12,6 +12,13 @@
 
 ## Update a source checkout
 
+<!-- Media target: Image | central-update | docs/assets/media/central-update.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-update">
+  <img src="../../assets/media-placeholder.svg" alt="The Central plugin directory contains its runtime and editor modules." loading="lazy">
+  <figcaption>The Central plugin directory contains its runtime and editor modules.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture YourProject/Plugins/Central in File Explorer with Central.uplugin and both Source/Central and Source/CentralEditor folders.</span></figcaption>
+</figure>
+
+
 Pull the release/tag intended for your project, regenerate project files if necessary, rebuild the Development Editor target, and restart the editor. A project installed from source requires a working C++ toolchain.
 
 ## Compatibility

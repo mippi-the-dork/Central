@@ -10,6 +10,13 @@ That test's existence is **not** evidence that it has been run successfully in y
 
 ## Run the native test
 
+<!-- Media target: Image | central-automation | docs/assets/media/central-automation.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-automation">
+  <img src="../../assets/media-placeholder.svg" alt="The Automation Framework exposes Central.Runtime.BasicStatistics." loading="lazy">
+  <figcaption>The Automation Framework exposes Central.Runtime.BasicStatistics.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> After actually running Automation RunTests Central, capture its real result in the Output Log or Automation UI. Never fabricate a passing test.</span></figcaption>
+</figure>
+
+
 In a suitable Development Editor build, open Unreal's console and execute:
 
 `Automation RunTests Central`

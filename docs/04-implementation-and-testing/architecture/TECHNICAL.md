@@ -8,6 +8,13 @@
 
 ## Editor K2 node
 
+<!-- Media target: Image | central-architecture | docs/assets/media/central-architecture.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-architecture">
+  <img src="../../assets/media-placeholder.svg" alt="UK2Node_Central owns graph behavior while UCentralBPLibrary owns arithmetic." loading="lazy">
+  <figcaption>UK2Node_Central owns graph behavior while UCentralBPLibrary owns arithmetic.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Draw a C++ ownership diagram with both modules, K2 functions, runtime UFUNCTIONs and the compile boundary.</span></figcaption>
+</figure>
+
+
 `UK2Node_Central` owns:
 - `AllocateDefaultPins` and output construction;
 - `GetMenuActions` and Math|Statistics placement;

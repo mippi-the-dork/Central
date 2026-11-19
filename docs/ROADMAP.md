@@ -5,6 +5,13 @@
 
 ## At a glance
 
+<!-- Media target: Image | central-roadmap | docs/assets/media/central-roadmap.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-roadmap">
+  <img src="assets/media-placeholder.svg" alt="Central v1.0.0 is released; no future version or feature set has been announced." loading="lazy">
+  <figcaption>Central v1.0.0 is released; no future version or feature set has been announced.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Create a milestone graphic with v1.0.0 Released listing Mean, Median, Mode and Weighted Mean, plus a separate Future Unannounced region; do not invent planned features.</span></figcaption>
+</figure>
+
+
 | Milestone | Status | Scope |
 | --- | --- | --- |
 | **v1.0.0 — Four Statistics Nodes** | Released | Mean, Median, Mode and Weighted Mean as type-aware, pure Blueprint nodes |

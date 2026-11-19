@@ -5,6 +5,13 @@
 Central's most common support questions involve **unconnected wildcard arrays**, unsupported type connections, a default output that looks like a valid result, or Mode correctly reporting **no mode** when every input occurs only once.
 
 ## Start here
+
+<!-- Media target: Image | central-support-triage | docs/assets/media/central-support-triage.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-support-triage">
+  <img src="../assets/media-placeholder.svg" alt="Most support questions involve array types, validity or connections." loading="lazy">
+  <figcaption>Most support questions involve array types, validity or connections.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Show one missing Values connection, one invalid Weighted Mean setup, and one working result in a readable annotated graph.</span></figcaption>
+</figure>
+
 If a graph fails to compile, confirm that **Values** is connected to a compatible array, that **Weights** is a Double array for Weighted Mean and that downstream output connections still match the input element type.
 
 If the node returns zero or an empty Modes array, inspect the validity output before deciding the calculation failed. For saved graphs, reconnect changed-type pins and recompile.

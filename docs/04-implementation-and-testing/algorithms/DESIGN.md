@@ -4,6 +4,13 @@
 
 ## What each node does internally
 
+<!-- Media target: Image | central-complexity | docs/assets/media/central-complexity.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-complexity">
+  <img src="../../assets/media-placeholder.svg" alt="The four statistics nodes use distinct algorithms and memory costs." loading="lazy">
+  <figcaption>The four statistics nodes use distinct algorithms and memory costs.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Create a comparison diagram: Mean/Weighted Mean O(n), Median O(n log n) sort/copy, Mode expected O(n) frequency map. Label as estimates.</span></figcaption>
+</figure>
+
+
 | Node | General approach | Expected complexity |
 | --- | --- | --- |
 | Mean | Accumulate and average | O(n) |

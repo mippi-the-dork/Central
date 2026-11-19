@@ -10,6 +10,13 @@ As a Blueprint author, you use the four compact statistics nodes. You don't need
 
 ## From graph to game
 
+<!-- Media target: Image | central-compile-flow | docs/assets/media/central-compile-flow.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-compile-flow">
+  <img src="../../assets/media-placeholder.svg" alt="Central's graph nodes compile into typed runtime function calls." loading="lazy">
+  <figcaption>Central's graph nodes compile into typed runtime function calls.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Diagram Blueprint wildcard node → supported-type resolution → UK2Node_CallFunction → Central Runtime execution in packaged gameplay.</span></figcaption>
+</figure>
+
+
 1. Place Mean, Median, Mode or Weighted Mean in a Blueprint.
 2. Connect a supported array to Values.
 3. Central's editor node determines the output type.
