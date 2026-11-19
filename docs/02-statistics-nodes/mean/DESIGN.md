@@ -20,9 +20,23 @@ For Values **[2, 4, 6, 8]**, Mean returns **5.0**.
 
 ## Typical workflow
 
+<!-- Media target: Image | central-mean | docs/assets/media/central-mean.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-mean">
+  <img src="../../assets/media-placeholder.svg" alt="Mean calculates a valid arithmetic average from supported arrays." loading="lazy">
+  <figcaption>Mean calculates a valid arithmetic average from supported arrays.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture Mean connected to Integer Make Array [2,4,6,8] and show its Double result 5.0 and Has Value output.</span></figcaption>
+</figure>
+
+
 Use Mean when summarizing sampled quantities, such as several observed damage values or frame-to-frame measurements. Feed the array into Values, branch or select on Has Value, then use Value in the gameplay logic.
 
 ## Integer and structure behavior
+
+<!-- Media target: GIF | central-mean-types | docs/assets/media/central-mean-types.gif -->
+<figure class="doc-media" data-kind="gif" data-media-id="central-mean-types">
+  <img src="../../assets/media-placeholder.svg" alt="Integer Mean retains fractional answers while Vector Mean returns a Vector." loading="lazy">
+  <figcaption>Integer Mean retains fractional answers while Vector Mean returns a Vector.<span class="media-capture-instructions"><strong>Capture instructions · GIF:</strong> Record changing the connected Values type from [1,2] Integers to Vectors; show the Double 1.5 output and later Vector output pin type.</span></figcaption>
+</figure>
+
 
 An Integer, Integer64 or Byte array produces a **Double** answer, preserving fractions. For example, [1, 2] → 1.5. Vector2D, Vector, Vector4 and Linear Color are averaged **per component**, rather than converted to a scalar length or luminance.
 

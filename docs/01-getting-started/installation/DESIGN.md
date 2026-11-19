@@ -8,6 +8,13 @@ Central v1.0.0 targets **Unreal Engine 5.8.x**. It includes both Runtime and Edi
 
 ## Project installation from source
 
+<!-- Media target: Image | central-install | docs/assets/media/central-install.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-install">
+  <img src="../../assets/media-placeholder.svg" alt="The Central plugin folder includes the runtime and editor source modules." loading="lazy">
+  <figcaption>The Central plugin folder includes the runtime and editor source modules.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture File Explorer at YourProject/Plugins/Central with Central.uplugin, Source, Resources and README visible and path identifiable.</span></figcaption>
+</figure>
+
+
 1. Close Unreal Editor.
 2. Place the complete Central plugin directory in `YourProject/Plugins/Central/`.
 3. Verify that `Central.uplugin`, `Source/Central` and `Source/CentralEditor` are inside that same directory.

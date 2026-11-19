@@ -8,6 +8,13 @@
 
 ## Source boundaries
 
+<!-- Media target: Image | central-source-ownership | docs/assets/media/central-source-ownership.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-source-ownership">
+  <img src="../../assets/media-placeholder.svg" alt="Graph-node and calculation responsibilities are separated between modules." loading="lazy">
+  <figcaption>Graph-node and calculation responsibilities are separated between modules.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Draw a diagram with Central.uplugin, CentralEditor/UK2Node_Central, Central/UCentralBPLibrary and the automation test.</span></figcaption>
+</figure>
+
+
 - `UCentralBPLibrary` in `Source/Central/` holds the typed runtime `BlueprintPure` functions.
 - `UK2Node_Central` in `Source/CentralEditor/` creates user-facing nodes, resolves wildcards and expands into typed function calls.
 - `Central.Runtime.BasicStatistics` is an Automation Framework test implemented under `Source/Central/Private/Tests/`.

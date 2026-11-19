@@ -4,6 +4,13 @@
 
 ## The problem Central solves
 
+<!-- Media target: Image | central-overview | docs/assets/media/central-overview.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-overview">
+  <img src="../../assets/media-placeholder.svg" alt="Central replaces common Blueprint array-math patterns with compact statistics nodes." loading="lazy">
+  <figcaption>Central replaces common Blueprint array-math patterns with compact statistics nodes.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture the four statistics nodes in a typical Blueprint graph with sample arrays and key outputs visible.</span></figcaption>
+</figure>
+
+
 Unreal Blueprints provide general-purpose array and math nodes, but combining them into a readable statistical operation takes extra graph space. Central exposes **four pure nodes** in **Math → Statistics**. They take connected arrays and return a result with an explicit validity output.
 
 | Question | Node | Sample result |

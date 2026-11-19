@@ -5,6 +5,13 @@
 Central adds four pure Blueprint nodes under **Math → Statistics**. It lets you calculate typical values from arrays directly in graphs, without manually implementing sorting, frequency counting or accumulation.
 
 ## Start with the question
+
+<!-- Media target: Image | central-start-overview | docs/assets/media/central-start-overview.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-start-overview">
+  <img src="../assets/media-placeholder.svg" alt="Four statistics operations answer different questions about a collection." loading="lazy">
+  <figcaption>Four statistics operations answer different questions about a collection.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Show four small labeled Blueprint examples using a shared simple dataset, each displaying a different applicable result.</span></figcaption>
+</figure>
+
 Use **Mean** for an ordinary average, **Median** when outliers could distort an average, **Mode** for repeated values and categories, and **Weighted Mean** when values deserve different contributions.
 
 ## Five-minute setup

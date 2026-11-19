@@ -4,6 +4,13 @@
 
 ## Find and use a node
 
+<!-- Media target: GIF | central-first-graph | docs/assets/media/central-first-graph.gif -->
+<figure class="doc-media" data-kind="gif" data-media-id="central-first-graph">
+  <img src="../../assets/media-placeholder.svg" alt="A connected Integer array resolves Mean and produces a valid Double result." loading="lazy">
+  <figcaption>A connected Integer array resolves Mean and produces a valid Double result.<span class="media-capture-instructions"><strong>Capture instructions · GIF:</strong> Record a Blueprint action search for Mean Value, place Make Array [2,4,6,8], connect Values, and display Value 5.0 with Has Value true.</span></figcaption>
+</figure>
+
+
 1. Open an Actor Blueprint, Widget Blueprint or another appropriate Blueprint graph.
 2. Right-click in the graph and search **Mean Value** under **Math → Statistics**.
 3. Add a **Make Array** node containing **2, 4, 6, 8** (Integer array).

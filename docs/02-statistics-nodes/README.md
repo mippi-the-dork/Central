@@ -6,6 +6,13 @@ Every Central statistics operation is a pure Blueprint node. Each provides **Val
 
 ## Choose the right statistic
 
+<!-- Media target: Image | central-four-nodes | docs/assets/media/central-four-nodes.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-four-nodes">
+  <img src="../assets/media-placeholder.svg" alt="Central provides four pure nodes under Math → Statistics." loading="lazy">
+  <figcaption>Central provides four pure nodes under Math → Statistics.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture all four nodes side-by-side in the Blueprint Editor with Mean, Median, Mode, Weighted Mean titles and validity pins legible.</span></figcaption>
+</figure>
+
+
 | Task | Node | Example |
 | --- | --- | --- |
 | Typical score across several attempts | Mean | [2, 4, 6, 8] → 5 |

@@ -22,9 +22,23 @@ Suppose measured input times are [12, 13, 14, 15, 130] milliseconds. The median 
 
 ## Does it change my array?
 
+<!-- Media target: Image | central-median | docs/assets/media/central-median.png -->
+<figure class="doc-media" data-kind="image" data-media-id="central-median">
+  <img src="../../assets/media-placeholder.svg" alt="Median orders temporary data without modifying the input array." loading="lazy">
+  <figcaption>Median orders temporary data without modifying the input array.<span class="media-capture-instructions"><strong>Capture instructions · Image:</strong> Capture unsorted Values [10,3,7] with Median result 7 and a debug watch showing the original array order unchanged.</span></figcaption>
+</figure>
+
+
 No. Median sorts a **working copy** of the input, not the original Blueprint array. You can use the source array elsewhere without its elements being re-ordered.
 
 ## Even counts and mathematical structs
+
+<!-- Media target: GIF | central-median-even | docs/assets/media/central-median-even.gif -->
+<figure class="doc-media" data-kind="gif" data-media-id="central-median-even">
+  <img src="../../assets/media-placeholder.svg" alt="Even-sized arrays average two middle values and complex types use components." loading="lazy">
+  <figcaption>Even-sized arrays average two middle values and complex types use components.<span class="media-capture-instructions"><strong>Capture instructions · GIF:</strong> Record [1,2,3,4] giving Median 2.5, then demonstrate Vector Median as independent X/Y/Z calculations with visible outputs.</span></figcaption>
+</figure>
+
 
 Integer arrays return Double, allowing the two middle values to average to a fraction. For supported vectors/colors, Median is calculated independently for every coordinate/channel. It is **not** the geometric median, and the resulting vector may not exist among the original array elements.
 
